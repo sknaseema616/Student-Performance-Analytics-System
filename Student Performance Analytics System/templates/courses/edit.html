@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit Course</h1>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_course', id=course.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PUT"
+    >
+
+    <label>Course Name</label>
+
+    <input
+        type="text"
+        name="name"
+        value="{{ course.name }}"
+        required
+    >
+
+    <br>
+
+    <label>Course Code</label>
+
+    <input
+        type="text"
+        name="code"
+        value="{{ course.code }}"
+        required
+    >
+
+    <br>
+
+    <button type="submit">
+        Update Course
+    </button>
+
+</form>
+
+<h3>Partial Update</h3>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_course', id=course.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PATCH"
+    >
+
+    <input
+        type="text"
+        name="name"
+        placeholder="New course name"
+        required
+    >
+
+    <button type="submit">
+        Update Name
+    </button>
+
+</form>
+
+{% endblock %}

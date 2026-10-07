@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit Student</h1>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_student', id=student.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PUT"
+    >
+
+    <label>Name</label>
+
+    <input
+        type="text"
+        name="name"
+        value="{{ student.name }}"
+        required
+    >
+
+    <br>
+
+    <label>Email</label>
+
+    <input
+        type="email"
+        name="email"
+        value="{{ student.email }}"
+        required
+    >
+
+    <br>
+
+    <button type="submit">
+        Update Student
+    </button>
+
+</form>
+
+<h3>Partial Update</h3>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_student', id=student.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PATCH"
+    >
+
+    <input
+        type="email"
+        name="email"
+        placeholder="New email"
+        required
+    >
+
+    <button type="submit">
+        Update Email
+    </button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Student Performance Analytics
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    {% if request.endpoint != 'auth.login' %}
+
+    <nav class="navbar">
+
+        <div class="nav-brand">
+            Student Performance Analytics
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('routes.home') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('routes.students') }}">
+                Students
+            </a>
+
+            <a href="{{ url_for('routes.courses') }}">
+                Courses
+            </a>
+
+            <a href="{{ url_for('routes.grades') }}">
+                Grades
+            </a>
+
+            <a href="{{ url_for('analytics.dashboard') }}">
+                Analytics
+            </a>
+
+            <a href="{{ url_for('auth.logout') }}" class="logout-link">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    {% endif %}
+
+
+    <main class="main-container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <footer>
+
+        Student Performance Analytics System
+
+    </footer>
+
+</body>
+
+</html>

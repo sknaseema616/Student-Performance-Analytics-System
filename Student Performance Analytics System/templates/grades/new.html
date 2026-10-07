@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Assign Grade</h1>
+
+<form method="POST" action="{{ url_for('routes.create_grade') }}">
+
+    <label>Student</label>
+
+    <select name="student_id" required>
+
+        <option value="">
+            Select Student
+        </option>
+
+        {% for student in students %}
+
+        <option value="{{ student.id }}">
+            {{ student.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br>
+
+    <label>Course</label>
+
+    <select name="course_id" required>
+
+        <option value="">
+            Select Course
+        </option>
+
+        {% for course in courses %}
+
+        <option value="{{ course.id }}">
+            {{ course.name }} ({{ course.code }})
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br>
+
+    <label>Score</label>
+
+    <input
+        type="number"
+        name="score"
+        min="0"
+        max="100"
+        step="0.01"
+        required
+    >
+
+    <br>
+
+    <label>Date</label>
+
+    <input
+        type="date"
+        name="date"
+        required
+    >
+
+    <br>
+
+    <button type="submit">
+        Assign Grade
+    </button>
+
+</form>
+
+{% endblock %}

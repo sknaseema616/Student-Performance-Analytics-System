@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Student Details</h1>
+
+<div class="card">
+
+    <p>
+        <strong>ID:</strong>
+        {{ student.id }}
+    </p>
+
+    <p>
+        <strong>Name:</strong>
+        {{ student.name }}
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        {{ student.email }}
+    </p>
+
+</div>
+
+
+<h2>Grades</h2>
+
+<table>
+
+    <tr>
+        <th>Course</th>
+        <th>Score</th>
+        <th>Date</th>
+    </tr>
+
+    {% for grade in grades %}
+
+    <tr>
+
+        <td>
+            {{ grade.course.name }}
+        </td>
+
+        <td>
+            {{ grade.score }}
+        </td>
+
+        <td>
+            {{ grade.date }}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

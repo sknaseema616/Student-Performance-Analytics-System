@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit Grade</h1>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_grade', id=grade.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PUT"
+    >
+
+    <label>Student</label>
+
+    <select name="student_id" required>
+
+        {% for student in students %}
+
+        <option
+            value="{{ student.id }}"
+            {% if student.id == grade.student_id %}
+                selected
+            {% endif %}
+        >
+
+            {{ student.name }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br>
+
+    <label>Course</label>
+
+    <select name="course_id" required>
+
+        {% for course in courses %}
+
+        <option
+            value="{{ course.id }}"
+            {% if course.id == grade.course_id %}
+                selected
+            {% endif %}
+        >
+
+            {{ course.name }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br>
+
+    <label>Score</label>
+
+    <input
+        type="number"
+        name="score"
+        value="{{ grade.score }}"
+        min="0"
+        max="100"
+        step="0.01"
+        required
+    >
+
+    <br>
+
+    <label>Date</label>
+
+    <input
+        type="date"
+        name="date"
+        value="{{ grade.date }}"
+        required
+    >
+
+    <br>
+
+    <button type="submit">
+        Update Grade
+    </button>
+
+</form>
+
+<h3>Partial Update</h3>
+
+<form
+    method="POST"
+    action="{{ url_for('routes.update_grade', id=grade.id) }}"
+>
+
+    <input
+        type="hidden"
+        name="_method"
+        value="PATCH"
+    >
+
+    <input
+        type="number"
+        name="score"
+        min="0"
+        max="100"
+        step="0.01"
+        placeholder="New score"
+        required
+    >
+
+    <button type="submit">
+        Update Score
+    </button>
+
+</form>
+
+{% endblock %}
